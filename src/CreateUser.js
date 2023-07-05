@@ -1,6 +1,9 @@
 import React from "react";
+import { UserDispatch } from "./App";
 
-function CreateUser({ username, email, onChange, onCreate }) {
+function CreateUser({ username, email, onChange }) {
+  const dispatch = useContext(UserDispatch);
+
   return (
     <div>
       <input
@@ -15,7 +18,19 @@ function CreateUser({ username, email, onChange, onCreate }) {
         onChange={onChange}
         value={email}
       />
-      <button onClick={onCreate}>등록</button>
+      <button
+        onClick={dispatch({
+          type: "CREATE_USER",
+          user: [
+            {
+              username: "asdf",
+              email: "asfd",
+            },
+          ],
+        })}
+      >
+        등록
+      </button>
     </div>
   );
 }
